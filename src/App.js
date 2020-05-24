@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import './App.css'
 import Board from './Components/Board'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import * as icons from '@fortawesome/free-solid-svg-icons' 
 
 import game from '@greenants/tic-tac-toe'
 import Dialog from './Components/Dialog'
@@ -59,6 +61,7 @@ const App = () => {
     <div>
       <div className="app">
         <div className="header">Let's Play!</div>
+       
         <Board 
           board={board}
           winner={winner} 
@@ -66,6 +69,12 @@ const App = () => {
           playerSide={playerSide}
           onCellClick={cellClick}
         />
+
+        <div className="footer">
+          <div className="circle"><FontAwesomeIcon icon={icons.faBrain}/></div>
+          <div className="circle"><FontAwesomeIcon icon={icons.faUser}/></div>
+          <div className="circle"><FontAwesomeIcon icon={icons.faTools}/></div>
+        </div>
       </div>
       <Dialog show={dialogMessage !== ''}>
           <h2>{dialogMessage}</h2>
