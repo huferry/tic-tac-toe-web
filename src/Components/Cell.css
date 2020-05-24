@@ -1,0 +1,19 @@
+.cell {
+    flex-basis: 33.33%;
+    margin: auto;
+    text-align: center;
+    color: white;
+    font-family: 'Piedra', cursive;
+    font-size: 7em;
+    height: 100px;
+}
+
+.winning-cell {
+    color: red !important;
+}
+
+@media only screen and (max-width: 650px) {
+    .cell {
+        font-size: 5em;
+    }
+}
