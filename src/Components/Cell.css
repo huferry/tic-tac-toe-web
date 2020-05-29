@@ -12,6 +12,11 @@
     color: red !important;
 }
 
+.shadow {
+    color: #a0a0a030;
+    padding-bottom: 30px;
+}
+
 @media only screen and (max-width: 650px) {
     .cell {
         font-size: 5em;

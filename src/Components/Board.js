@@ -17,6 +17,7 @@ const Board = ({board, winner, playerSide, onCellClick}) => {
                     [0,1,2].map(col => {
                         return (
                             <Cell
+                                shadow={playerSide}
                                 key={`cell_${row}_${col}`}
                                 isWinningCell={isWinningCell(row,col)}
                                 content={board[row][col]}
