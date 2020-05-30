@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import './App.css'
 import Board from './Components/Board'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import * as icons from '@fortawesome/free-solid-svg-icons' 
 
 import game from '@greenants/tic-tac-toe'
 import Dialog from './Components/Dialog'
 import Stats from './Components/Stats'
 import firebase from './firestore'
 import Hello from './Components/Hello'
+import About from './Components/About'
+import Footer from './Components/Footer'
 
 const db = firebase.firestore()
 const playRef = db.collection('play')
@@ -26,6 +26,7 @@ const App = () => {
   const [ dialogMessage, setDialogMessage ] = useState( `Let's play Tic, Tac, Toe!` )
   const [ board, setBoard ] = useState( game.newBoard() )
   const [ winner, setWinner ] = useState()
+  const [ about, setAbout ] = useState({ visible: false, index: 0 })
 
   if (stats.length ===0) {
     getStats().then(s => setStats(s))
@@ -96,9 +97,7 @@ const App = () => {
     <div>
       <div className="app">
         <div className="header">Let's Play!</div>
-
         <div className='side'>Human is playing: {playerSide}</div>
-
         <Board 
           board={board}
           winner={winner} 
@@ -106,14 +105,8 @@ const App = () => {
           playerSide={playerSide}
           onCellClick={cellClick}
         />
-
         <Stats stats={stats} />
-
-        <div className="footer">
-          <div className="circle"><FontAwesomeIcon icon={icons.faBrain}/></div>
-          <div className="circle"><FontAwesomeIcon icon={icons.faUser}/></div>
-          <div className="circle"><FontAwesomeIcon icon={icons.faTools}/></div>
-        </div>
+        <Footer showAbout={index => setAbout({visible: true, index})} />
       </div>
       <Dialog show={dialogMessage !== ''}>
           <h2>{dialogMessage}</h2>
@@ -124,6 +117,7 @@ const App = () => {
           </div>
       </Dialog>
       <Hello />
+      <About visible={about.visible} index={about.index} onClose={() => setAbout({visible: false})}/>
   </div>)
 }
 
